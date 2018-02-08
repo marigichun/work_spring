@@ -20,6 +20,7 @@ public class TestDrive {
 		//OraUserDao dao = new OraUserDao();	
 		
 		//DI-2  인터페이스 방식으로도 해결안됨
+		
 		//UserDao dao = new OraUserDao();
 		
 		//DI-3:Factory를 이용하자
