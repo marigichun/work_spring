@@ -13,10 +13,7 @@
 	
 	beans 앨리먼트의 default-autowire의 기본값은 no 이다.
 -->
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-	default-autowire="no">
+
 	
 	<bean id="greeting" class="bean.GreetingService" autowire="constructor" />
 	
