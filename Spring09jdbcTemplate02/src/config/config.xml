@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- jdbc.properties 파일을 불러오기 -->
 	<context:property-placeholder location="classpath:/config/jdbc.properties"/>
@@ -26,8 +28,24 @@
 		ref 속성(attribute)은 위에서  만든 dataSource 빈 객체를
 		생성자의 파라미터로 사용하겠다는 뜻이다.
 	 -->
+	 <!-- NamedParameterJdbcTemplate객체를 사용하기 위행 빈 객체 생성 -->
 	<bean class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg ref="dataSource"></constructor-arg>
 	</bean>
-
+	
+	<!-- 데이터베이스의 트랜젝션 관리를 스프링이 대신 해주기 위해 생성한 빈 객체 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 애노테이션을 이용해서 트랜젝션 관리를 할 것이라고 설정한 것이다. -->
+	<tx:annotation-driven transaction-manager= "transactionManager"/>
+	
+	<!-- (7번 예제참고) 스프링에서 만든 Annotation들을 사용하겠다는 뜻 -->
+	<context:annotation-config></context:annotation-config>
+	
+	<!-- (7번 예제참고) 스프링에서 만든 적용범위를 패키지 단위로 지정 -->
+	<context:component-scan base-package="dao, service">
+	</context:component-scan>
 </beans>

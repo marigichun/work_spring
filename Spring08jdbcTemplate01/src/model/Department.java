@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Department implements Serializable {
@@ -10,10 +11,13 @@ public class Department implements Serializable {
 	private Integer deptno;
 	private String dname;
 	private String loc;
-	private List<Employee> employeeList;	// 한 부서는 여러 직원을 가질 수 있는 관계
+	private List<Employee> employeeList = new ArrayList<>();	// 한 부서는 여러 직원을 가질 수 있는 관계
 	
 	// 2. 기본생성자
-	public Department() {}
+	public Department() {
+		//this.employeeList = new ArrayList<>(); //필드에 전체 초기화로 해되 상관없음, 먼저 실행되게
+
+	}
 	
 	// 3. 모든 필드 초기화 생성자
 	public Department(Integer deptno, String dname, String loc) {
