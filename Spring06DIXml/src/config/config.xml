@@ -2,8 +2,8 @@
 <!--
 	의존 관계 자동 설정
 	
-	byName: 필드의 이름과 같은 이름을 갖는 빈 객체를 연결한다.
-	byType: 필드의 타입과 같은 타입을 갖는 빈 객체를 연결한다.
+	byName: 프로퍼티 이름과 같은 이름을 갖는 빈 객체를 연결한다.(프로퍼티는 setter)
+	byType: 프로퍼티 타입과 같은 타입을 갖는 빈 객체를 연결한다.
 	constructor: 생성자 파라미터 타입과 같은 타입을 갖는 빈 객체를 연결한다.
 -->
 
@@ -13,7 +13,10 @@
 	
 	beans 앨리먼트의 default-autowire의 기본값은 no 이다.
 -->
-
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="no">
 	
 	<bean id="greeting" class="bean.GreetingService" autowire="constructor" />
 	

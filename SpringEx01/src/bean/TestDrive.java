@@ -6,16 +6,17 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class TestDrive {
 
-	public static void main(String[] args) {
+	@SuppressWarnings("resource")
+	public static void main(String[] args, Object name) {
 		//1.스프링 설정 파일 가져오기
 		ApplicationContext context = 
-				new GenericXmlApplicationContext();
+				new GenericXmlApplicationContext("/config/config.xml");
 		
 		//2.ApplicationContext 객체 이용하여 PersonService 객체 만들기
-		PersonService service = context.getBean("name", PersonService.class);
+		PersonService service = context.getBean("service", PersonService.class);
 		
 		//3.만든 객체로 2-2에서 구현한 메소드 만들기
-		service.sayHello();
+		service.printName();
 	}
 	
 	/*

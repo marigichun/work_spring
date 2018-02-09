@@ -3,7 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="name" class="bean.PersonService" autowire="byName" />
-	
-	<bean name="by" class="bean.PersonImpl" />
+	<bean id="person" class="bean.PersonImpl" >
+		<constructor-arg>
+			<value type="java.lang.String">깍꿍</value>
+		</constructor-arg>
+	</bean>	
+	<bean id="service" class="bean.PersonService" autowire="byName"></bean>
 </beans>
