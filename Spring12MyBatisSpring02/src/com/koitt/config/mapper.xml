@@ -12,8 +12,3 @@
   		<result property= "birthdate" column="birth_date"/>
   	</resultMap>
   </mapper>
-  
-  
-  
-  
-  
