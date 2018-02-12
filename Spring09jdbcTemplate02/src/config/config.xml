@@ -10,9 +10,10 @@
 	<!-- jdbc.properties 파일을 불러오기 -->
 	<context:property-placeholder location="classpath:/config/jdbc.properties"/>
 	
-	<!-- JDBC.Template을 위한 DataSource 객체생성
-		각 properties엘리먼트들의  name은 DataSource 클래스의 setter 메소드를 사용한 것이다.
-		예)setDriverClassName(${jdbc.driverClassName}와 같이 jar파일에 구현된 메소드 사용 빈 객체 생성)
+	<!--
+		JDBC Template을 위한 DataSource 객체 생성
+		각 property 앨리먼트들의 name은 DataSource 클래스의 setter 메소드를 사용한 것이다.
+		예) setDriverClassName(${jdbc.driverClassName})
 	 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName"	value="${jdbc.driverClassName}" />
@@ -22,30 +23,46 @@
 		<property name="maxActive"			value="${jdbc.maxActive}" />
 	</bean>
 	
-	<!-- 
+	<!--
 		기존 Java의 JDBC보다 더 편하게 사용할 수 있도록
-		Spring에서 제공하는 JDBC Template 클래스 객체 생성
-		ref 속성(attribute)은 위에서  만든 dataSource 빈 객체를
-		생성자의 파라미터로 사용하겠다는 뜻이다.
+		Spring에서 제공하는 JDBC Template 클래스 객체 생성.
+		ref 속성(attribute)은 위에서 만든 dataSource 빈 객체를
+		생성자의 파라미터로 사용하겠다는 뜻이다. 
 	 -->
-	 <!-- NamedParameterJdbcTemplate객체를 사용하기 위행 빈 객체 생성 -->
 	<bean class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg ref="dataSource"></constructor-arg>
 	</bean>
 	
-	<!-- 데이터베이스의 트랜젝션 관리를 스프링이 대신 해주기 위해 생성한 빈 객체 -->
+	<!-- NamedParameterJdbcTemplate 객체를 사용하기 위해 빈 객체 생성 -->
+	<bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+	
+	<!-- 데이터베이스의 트랜젝션 관리를 스프링이 대신 해주기위해 생성한 빈 객체 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
 	<!-- 애노테이션을 이용해서 트랜젝션 관리를 할 것이라고 설정한 것이다. -->
-	<tx:annotation-driven transaction-manager= "transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	<!-- (7번 예제참고) 스프링에서 만든 Annotation들을 사용하겠다는 뜻 -->
+	<!-- 스프링에서 만든 Annotation들을 사용하겠다는 것 -->
 	<context:annotation-config></context:annotation-config>
 	
-	<!-- (7번 예제참고) 스프링에서 만든 적용범위를 패키지 단위로 지정 -->
+	<!-- 스프링 애노테이션 적용범위를 패키지 단위로 지정 -->
 	<context:component-scan base-package="dao, service">
 	</context:component-scan>
+
 </beans>
+
+
+
+
+
+
+
+
+
+
+

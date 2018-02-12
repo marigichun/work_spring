@@ -8,8 +8,6 @@ public class Job {
 	private Integer maxSalary;
 	
 	public Job() {}
-	
-	
 
 	public Job(String jobId, String jobTitle, Integer minSalary, Integer maxSalary) {
 		this.jobId = jobId;
@@ -17,8 +15,6 @@ public class Job {
 		this.minSalary = minSalary;
 		this.maxSalary = maxSalary;
 	}
-
-
 
 	public String getJobId() {
 		return jobId;
@@ -65,7 +61,5 @@ public class Job {
 		builder.append(maxSalary);
 		builder.append("]");
 		return builder.toString();
-	} 
-	
-	
+	}
 }
