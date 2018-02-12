@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import model.Job;
 
-@Repository	// Transaction 사용을 하려면 Dao 클래스에 @Repository를 작성해야 한다.
+@Repository	// Transaction 사용을 하려면 Dao 클래스에 @Repository를 작성해야 한다. 빈 객체를 만들겠다는 것
 public class TxDao {
 	
 	@Autowired	// XML 설정파일에서 autowire="byType" 한 것과 동일하게 동작
