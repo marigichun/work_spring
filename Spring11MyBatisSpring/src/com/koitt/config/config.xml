@@ -8,7 +8,7 @@
 	<!-- Spring 애노테이션 사용하기 위한 작성 -->
 	<context:annotation-config></context:annotation-config>
 	
-	<!-- com.koitt패키지 하위의 모드 코드에서 스프링 에노테이션을 사용하겠다는 뜻 -->
+	<!-- com.koitt패키지 하위의 모드 코드에서 스프링 에노테이션을 사용하겠다는 뜻, java file의 @(애노테이션)component-scan 범위의-->
 	<context:component-scan base-package="com.koitt"></context:component-scan>
 	
 	<!-- jdbc 프로퍼티 파일을 불러오기 -->
@@ -27,14 +27,16 @@
 		<property name="maxActive"			value="${jdbc.maxActive}" />
 	</bean>
 	
-	<!-- 방법1: SqlSessionFactory 객체 이용하여 SQL문 실행하는 번 -->
+	<!-- 방법1: SqlSessionFactory 객체 이용하여 SQL문 실행하는 법 property== 클래스의 setDataSource이다.-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLacation" value="/com/koitt/config/mybatis.xml"/>
+		<!-- mybatis Spring도 알아야하는 경로로  -->
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
+		<!-- ^생성자 -->			<!--^속성     ^생정자의 인자값을 넣음-->
 	</bean>	
 </beans>
 

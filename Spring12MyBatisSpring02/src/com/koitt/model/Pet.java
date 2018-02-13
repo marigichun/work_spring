@@ -8,9 +8,17 @@ public class Pet {
 	private String petName;
 	private String ownerName;
 	private Integer price;
-	private Date berthDate;
+	private Date birthDate;
 	
 	public Pet() {}
+
+	public Pet(Integer petId, String petName, String ownerName, Integer price, Date birthDate) {
+		this.petId = petId;
+		this.petName = petName;
+		this.ownerName = ownerName;
+		this.price = price;
+		this.birthDate = birthDate;
+	}
 
 	public Integer getPetId() {
 		return petId;
@@ -44,12 +52,12 @@ public class Pet {
 		this.price = price;
 	}
 
-	public Date getBerthDate() {
-		return berthDate;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public void setBerthDate(Date berthDate) {
-		this.berthDate = berthDate;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	@Override
@@ -63,12 +71,9 @@ public class Pet {
 		builder.append(ownerName);
 		builder.append(", price=");
 		builder.append(price);
-		builder.append(", berthDate=");
-		builder.append(berthDate);
+		builder.append(", birthDate=");
+		builder.append(birthDate);
 		builder.append("]");
 		return builder.toString();
-	} 
-	
-	
-	
+	}
 }
