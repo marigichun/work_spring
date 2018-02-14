@@ -8,9 +8,8 @@ import com.koitt.board.model.BoardException;
 public interface BoardService {
 	
 	// 글 상세정보
-	public Board detail(String no) {
-		return dao.select(no);
-	}	
+	public Board detail(String no);
+	
 	// 글 전체
 	public List<Board> list() throws BoardException;
 	
@@ -22,4 +21,6 @@ public interface BoardService {
 	
 	// 글 삭제하기
 	public void remove(String no);
+
+	public void add(Board board) throws BoardException;
 }

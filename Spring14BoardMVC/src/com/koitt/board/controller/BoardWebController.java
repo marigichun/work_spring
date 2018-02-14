@@ -46,15 +46,50 @@ public class BoardWebController {
 		return "board-list";
 	}
 	
-	//글 상세 화면
-	@RequestMapping(value = "/board-detail.do", method=RequestMethod.GET)
+	// 글 상세 화면
+	@RequestMapping(value="/board-detail.do", method=RequestMethod.GET)
 	public String detail(Model model,
-			@RequestParam(value="no", required=true) String no) throws BoardException {
+			@RequestParam(value="no", required=true) String no) {
 		Board board = null;
 		
-		board =service.detail(no);
+		try {
+			board = service.detail(no);
+		} catch (BoardException e) {
+			model.addAttribute("error", "server");
+		}
 		
 		model.addAttribute("board", board);
+		
 		return "board-detail";
 	}
+	
+	// 글 작성 화면
+	@RequestMapping(value="/board-add.do", method=RequestMethod.GET)
+	public String add() {		
+		return "board-add";
+	}
+	
+	// 글 추가 후, 글 목록 화면으로 이동
+	@RequestMapping(value="/board-add.do", method=RequestMethod.POST)
+	public String add(Model model, Board board) {
+		try {
+			service.add(board);
+			
+		} catch (BoardException e) {
+			model.addAttribute("error", "server");
+		}
+		
+		// redirect: 뒤에 입력한 주소로 이동
+		return "redirect:board-list.do";
+	}
 }
+
+
+
+
+
+
+
+
+
+
