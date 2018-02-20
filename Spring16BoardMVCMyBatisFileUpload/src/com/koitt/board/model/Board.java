@@ -7,7 +7,7 @@ import java.util.Date;
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String no;			// 글 번호
+	private Integer no;			// 글 번호
 	private String title;		// 글 제목
 	private String content;		// 글 내용
 	private Integer userNo;		// 사용자 번호
@@ -29,7 +29,7 @@ public class Board implements Serializable {
 	}
 
 	// 3. getter, setter
-	public String getNo() {
+	public Integer getNo() {
 		return no;
 	}
 
