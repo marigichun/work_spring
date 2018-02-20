@@ -66,21 +66,57 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int boardCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int boardCount() throws BoardException {
+		Integer result = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) cnt FROM board";
+			result = template.queryForObject(sql, Integer.class);
+			
+		} catch (Exception e) {
+			throw new BoardException(e.getMessage());
+		}
+		
+		return result;
 	}
 
 	@Override
-	public void update(Board board) {
-		// TODO Auto-generated method stub
+	public void update(Board board) throws BoardException {
+		try {
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE board SET title = ?, ");
+			sql.append("content = ?, ");
+			sql.append("regdate = CURDATE() ");
+			sql.append("WHERE no = ?");
+			
+			template.update(sql.toString(),
+					board.getTitle(),
+					board.getContent(),
+					board.getNo());
+			
+		} catch (Exception e) {
+			throw new BoardException(e.getMessage());
+		}
 		
 	}
 
 	@Override
-	public void delete(String no) {
-		// TODO Auto-generated method stub
-		
+	public void delete(String no) throws BoardException {
+		try {
+			String sql = "DELETE FROM board WHERE no = ?";
+			template.update(sql, no);
+			
+		} catch (Exception e) {
+			throw new BoardException(e.getMessage());
+		}
 	}
 
 }
+
+
+
+
+
+
+
+
