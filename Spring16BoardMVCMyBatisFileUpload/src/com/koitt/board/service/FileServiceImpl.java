@@ -147,46 +147,44 @@ public class FileServiceImpl implements FileService {
 	public void remove(HttpServletRequest request, String filename) throws FileException {
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
 		
-		if(filename != null && !filename.trim().isEmpty()) {
-			//file 디코드
+		if (filename != null && !filename.trim().isEmpty()) {
+			// filename 디코딩
 			try {
-				filename =URLDecoder.decode(filename,"UTF-8");
-			}catch(Exception e) {
+				filename = URLDecoder.decode(filename, "UTF-8");
+				
+			} catch (Exception e) {
 				throw new FileException(e.getMessage());
 			}
-		//서버에 저장된 파일을 불러와서 객체화 시킴
-		File file = new File(path, filename);
-		
-		//만약 파일이 존재하면 파일을 삭제한다.
-		if(file.exists()) {
-			file.delete();
+			
+			// 서버에 저장된 파일을 불러와서 객체화 시킴
+			File file = new File(path, filename);
+
+			// 만약 파일이 존재하면 파일을 삭제한다.
+			if (file.exists()) {
+				file.delete();
 			}
 		}
 	}
 
 	@Override
-	public String getImgPath(HttpServletRequest request, String filename) throws FileException {
+	public String getImgPath(HttpServletRequest request, String filename) {
 		// 컨텍스트 경로 가져오기 (localhost:8080/Spring16BoardMVCMyBatisFileUpload)
 		String contextPath = request.getContextPath();
 		
 		// 파일의 확장자 추출
-		try {
-		if(filename != null && !filename.trim().isEmpty()) {
-			
+		if (filename != null && !filename.trim().isEmpty()) {
 			int idx = filename.lastIndexOf(".");
 			String ext = filename.substring(idx, filename.length());
-		
+
 			// 만약 JPG 그림파일이면 파일경로를 리턴
 			switch (ext) {
 			case ".jpg":
 			case ".jpeg":
 			case ".png":
 				return contextPath + UPLOAD_FOLDER + "/" + filename;
-				}
-			}	
-		}catch (Exception e) {	
-			throw new FileException(e.getMessage());
+			}
 		}
+		
 		// 그림파일이 아니면 null값 리턴
 		return null;
 	}
