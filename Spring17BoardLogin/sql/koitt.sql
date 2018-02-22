@@ -81,12 +81,13 @@ SELECT * FROM users;
 SELECT * FROM authority;
 SELECT * FROM users_authority;
 
-#1. users_authrity 테이블과 authority 테이블 EQUI JOIN하는 SQL문
+
+# 1. users_authority 테이블과 authority 테이블을 EQUI JOIN하는 SQL문
 SELECT users_authority.users_no, authority.id, authority.name
 FROM users_authority, authority
-WHERE users_authority.authority_id = authority.id
+WHERE users_authority.authority_id = authority.id;
 
-#2.1번에서 조인한 결과 테이블과 users테이블을 EQUI JOIN하는 SQL문
+# 2. 1번에서 조인한 결과 테이블과 users 테이블을 EQUI JOIN하는 SQL문
 SELECT u.no, u.email, u.password, u.name, u.attachment, ua.id, ua.name as "aname"
 FROM users u,
 	(SELECT users_authority.users_no, authority.id, authority.name
@@ -94,7 +95,7 @@ FROM users u,
 	WHERE users_authority.authority_id = authority.id) ua
 WHERE u.no = ua.users_no;
 
-#3.2번 결과에서 한 사용자에 대한 정보만 가져오는  SQL문(2번 + AND u.no = #{no})
+# 3. 2번 결과에서 한 사용자에 대한 정보만 가져오는 SQL문 (2번 + AND u.no = #{no})
 SELECT u.no, u.email, u.password, u.name, u.attachment, ua.id, ua.name as "aname"
 FROM users u,
 	(SELECT users_authority.users_no, authority.id, authority.name
@@ -102,7 +103,30 @@ FROM users u,
 	WHERE users_authority.authority_id = authority.id) ua
 WHERE u.no = ua.users_no AND u.no = 3;
 
+# 4. board 테이블과 users 테이블 EQUI JOIN
+SELECT b.no, b.title, b.content, b.user_no, b.regdate, b.attachment, 
+	u.email, u.name, u.attachment as "uattachment"
+FROM board b, users u
+WHERE b.user_no = u.no ORDER BY b.no DESC;
 
 
+# 5. 4번 SQL문에서 하나의 게시물을 선택하기 위한 SQL문
+SELECT b.no, b.title, b.content, b.user_no, b.regdate, b.attachment, 
+  	u.email, u.name, u.attachment as "uattachment"
+FROM board b, users u
+WHERE b.user_no = u.no AND b.no = 10 ORDER BY b.no DESC;
+
+# 6. 사용자 번호 3번 유저와 같이 관리자 권한과 일반사용자 권한을 함께 입력할 경우 (Oracle)
+INSERT ALL
+	INTO users_authority(users_no, authority_id)
+  	VALUES (3, 10)
+  	INTO users_authority(users_no, authority_id)
+  	VALUES (3, 20)
+SELECT * FROM DUAL;
+
+# 6-1. 6번을 MySQL 버전으로 변경
+INSERT INTO users_authority(users_no, authority_id) VALUES
+(8, 10),
+(8, 20);
 
 
