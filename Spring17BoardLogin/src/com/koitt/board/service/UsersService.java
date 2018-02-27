@@ -2,9 +2,12 @@ package com.koitt.board.service;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+=======
+>>>>>>> branch 'master' of https://github.com/marigichun/work_spring.git
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.koitt.board.model.Authority;

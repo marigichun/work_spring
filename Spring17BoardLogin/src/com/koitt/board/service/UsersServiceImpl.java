@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+<<<<<<< HEAD
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+=======
+>>>>>>> branch 'master' of https://github.com/marigichun/work_spring.git
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
