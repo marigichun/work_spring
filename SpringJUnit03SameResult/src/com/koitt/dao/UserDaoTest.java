@@ -22,7 +22,7 @@ public class UserDaoTest {
 		UserDao dao = context.getBean("userDao", UserDao.class);
 		
 		//전체 삭제
-		dao.delectAll(); //테이블을 초기화
+		dao.delectAll(); //테이블을 초기화>>> 또 다시 test을 위해 
 		//정말  전체 삭제가 됐는지 확인하기 위해 getCount로 확인
 		assertThat(dao.getCount(), is(0));
 		

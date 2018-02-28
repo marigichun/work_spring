@@ -59,6 +59,22 @@
   		WHERE no = #{no}
   	</update>
   	
+  	<delete id="delete-all-users">
+  		DELETE FROM users
+  	</delete>
+  	
+  	<select id="count-users" resultType="int">
+  		SELECT COUNT(*) FROM users
+  	</select>
+  	
+  	<delete id="delete-all-users-authority">
+  		DELETE FROM users_authority
+  	</delete>
+  	
+  	<select id="count-users-authority" resultType="int">
+  		SELECT COUNT(*) FROM users_authority
+  	</select>
+  	
   </mapper>
   
   

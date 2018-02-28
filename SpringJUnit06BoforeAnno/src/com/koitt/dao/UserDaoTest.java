@@ -25,6 +25,8 @@ public class UserDaoTest {
 	/*
 	 * Before 애노테이션:JUnit이 제공하는 애노테이션
 	 * @Test메소드가  실행되기 전에 먼저 실행되어야 하는 메소드를 정의한다.
+	 * test 실행시 최우선적으로 먼저 실행후 실행
+	 * 
 	 */
 	@Before
 	public void setUp() {

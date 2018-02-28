@@ -19,12 +19,12 @@ import com.koitt.vo.User;
 
 //스프링 테스트 컨텓스트 프레임워크의 JUnit 확장기능 지정
 @RunWith(SpringJUnit4ClassRunner.class)
-//테스트 컨텍스트가 자동으로 만들어줄 애플리케이션 컨텍스트의 위치 지정
+//테스트 컨텍스트가 자동으로 만들어줄 애플리케이션 컨텍스트의 위치 지정>>Context을 하나만 사용할 수 있게여러개 필요없이
 @ContextConfiguration(locations="/con/koitt/config/applicationContext.xml")
 public class UserDaoTest {
 	/*
 	 * 테스트 객체가 만들어지고 나면 스프링 테스트 컨텍스트엣 의해 자동으로 값이 주입된다.
-	 * 이렇게 사용하는 이유는 컨텍스트 객체가 여러개 생성되는 것을 방지하기 위해서이다.
+	 * 이렇게 사용하는 이유는 컨텍스트 객체가 여러개 생성되는 것을 방지하기 위해서이다.(객체가 새로 생성)
 	 */
 	@Autowired
 	private ApplicationContext context;   //스프링의 객체는 하나면 되므로
