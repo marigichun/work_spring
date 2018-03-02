@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class I18NController {
 	
 	@RequestMapping("/index.do")
-	public String insex() {
+	public String index() {
 		return "index";
 	}
 	
