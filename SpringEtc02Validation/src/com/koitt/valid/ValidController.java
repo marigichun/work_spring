@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ValidController {
 	
 	@RequestMapping(value="/customer.do", method=RequestMethod.GET)
-	public String customer(@Valid Customer customer, Errors err) {
+	public String customer(@Valid Customer customer, Errors err) {//@Valid 유효성 검증을 위한 애노테이션
 		
 		// 만약 유효범위를 벗어날 경우 hasErrors() 메소드의 리턴값은 true가 된다.
 		if (err.hasErrors()) {

@@ -9,7 +9,7 @@
 	
 	<context:component-scan base-package="com.koitt" />
 	
-	<!-- 비동기 실행 / 스케줄링 실행을 위해 선언 -->
+	<!-- 비동기 실행 / 스케줄링 실행을 위해 선언, pool-size는 thread pool을 뜻함-->
 	<task:scheduler id="myScheduler" pool-size="10" />
 	<task:executor id="myTaskExecutor" pool-size="10" />
 	<task:annotation-driven executor="myTaskExecutor" scheduler="myScheduler"/>

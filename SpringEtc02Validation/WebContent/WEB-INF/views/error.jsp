@@ -7,7 +7,7 @@
 	<h1>유효성 검사 오류 페이지</h1>
 	<p>
 		<spring:bind path="customer.name">
-			${ status.expression }: ${ status.errorMessages[0] }
+			${ status.expression }: ${ status.errorMessages[0] }<!-- 오류시 나오는 메시지 전송 -->
 		</spring:bind>
 	</p>
 	<p>
